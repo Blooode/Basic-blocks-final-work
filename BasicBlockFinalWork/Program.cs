@@ -78,7 +78,7 @@ namespace BasicBlockFinalWork
                         Console.Write("Wrong input! Enter the array size again: ");
                         break;
                     }
-                    else if (char.IsDigit(value[value.Length - 1])) isWrong = false;
+                    else if (i == value.Length - 1 && char.IsDigit(value[value.Length - 1])) isWrong = false;
                 }
             } while (isWrong);
             return Convert.ToInt32(value);
