@@ -7,6 +7,23 @@ namespace BasicBlockFinalWork
 {
     internal class Program
     {
+        static int CompareStringLength(string[] array)
+        {
+            bool[] rightIndexes = new bool[array.Length];
+            int comparingValue = 3;
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i].ToString().Length <= comparingValue) rightIndexes[i] = true;
+                else rightIndexes[i] = false;
+            }
+            int arraySize = 0;
+            foreach (bool flag in rightIndexes)
+            {
+                if (flag == true) arraySize++;
+            }
+            return arraySize;
+        }
+
         static string[] FillByHandStringArray(string[] array)
         {
             for (int i = 0; i < array.Length; i++)
@@ -39,6 +56,8 @@ namespace BasicBlockFinalWork
             FillByHandStringArray(strings);
             Console.WriteLine();
             Output1DStringArray(strings);
+
+            string[] finalStrings = new string[CompareStringLength(strings)];
         }
     }
 }
