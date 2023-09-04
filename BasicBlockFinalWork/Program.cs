@@ -15,9 +15,10 @@ namespace BasicBlockFinalWork
         static string[] CreateNewArray(string[] array, string[] finalArray)
         {
             int finalArrayIndex = 0;
+            int comparingValue = 3;
             for (int i = 0; i < array.Length; i++)
             {
-                if (array[i].ToString().Length <= 3) finalArray[finalArrayIndex++] = array[i];
+                if (array[i].ToString().Length <= comparingValue) finalArray[finalArrayIndex++] = array[i];
             }
             return finalArray;
         }
