@@ -3,10 +3,25 @@
 // либо задать на старте выполнения алгоритма. При решении не рекомендуется пользоваться коллекциями,
 // лучше обойтись исключительно массивами.
 
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.Design;
+
 namespace BasicBlockFinalWork
 {
     internal class Program
     {
+        // Creates new string array with strings of 3 symbols or less.
+
+        static string[] CreateNewArray(string[] array, string[] finalArray)
+        {
+            int finalArrayIndex = 0;
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i].ToString().Length <= 3) finalArray[finalArrayIndex++] = array[i];
+            }
+            return finalArray;
+        }
+
         static int CompareStringLength(string[] array)
         {
             bool[] rightIndexes = new bool[array.Length];
@@ -19,7 +34,7 @@ namespace BasicBlockFinalWork
             int arraySize = 0;
             foreach (bool flag in rightIndexes)
             {
-                if (flag == true) arraySize++;
+                if (flag) arraySize++;
             }
             return arraySize;
         }
@@ -47,17 +62,38 @@ namespace BasicBlockFinalWork
 
         static int SetIntValue(string text)
         {
+            string value = string.Empty;
+            bool isWrong = false;
             Console.Write(text);
-            return Convert.ToInt32(Console.ReadLine());
+
+                do
+            {
+                value = Console.ReadLine() ?? string.Empty;
+                for (int i = 0; i < value.Length; i++)
+                {
+                    if (!char.IsDigit(value[i]))
+                    {
+                        isWrong = true;
+                        Console.Write("Wrong input! Enter the array size again: ");
+                        break;
+                    }
+                    else if (char.IsDigit(value[value.Length - 1])) isWrong = false;
+                }
+            } while (isWrong);
+            return Convert.ToInt32(value);
         }
+
         static void Main(string[] args)
         {
             string[] strings = new string[SetIntValue("Enter the array size: ")];
             FillByHandStringArray(strings);
-            Console.WriteLine();
+            Console.WriteLine("Values of array:");
             Output1DStringArray(strings);
-
+            Console.WriteLine();
             string[] finalStrings = new string[CompareStringLength(strings)];
+            CreateNewArray(strings, finalStrings);
+            Console.WriteLine("Values of final array:");
+            Output1DStringArray(finalStrings);
         }
     }
 }
