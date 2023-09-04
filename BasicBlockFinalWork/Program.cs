@@ -7,6 +7,20 @@ namespace BasicBlockFinalWork
 {
     internal class Program
     {
+        static string[] FillByHandStringArray(string[] array)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i] = SetStringValue($"Enter the {i} string: ");
+            }
+            return array;
+        }
+
+        static void Output1DStringArray(string[] array)
+        {
+            for (int i = 0; i < array.Length; i++) Console.WriteLine(array[i]);
+        }
+
         static string SetStringValue(string text)
         {
             Console.Write(text);
@@ -22,6 +36,9 @@ namespace BasicBlockFinalWork
         static void Main(string[] args)
         {
             string[] strings = new string[SetIntValue("Enter the array size: ")];
+            FillByHandStringArray(strings);
+            Console.WriteLine();
+            Output1DStringArray(strings);
         }
     }
 }
