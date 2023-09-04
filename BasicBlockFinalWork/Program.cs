@@ -63,7 +63,7 @@ namespace BasicBlockFinalWork
 
         static int SetIntValue(string text)
         {
-            string value = string.Empty;
+            string value;
             bool isWrong = false;
             Console.Write(text);
 
